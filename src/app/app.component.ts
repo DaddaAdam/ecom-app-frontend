@@ -14,6 +14,11 @@ export class AppComponent {
     {title: 'Home', route: '/home', icon: 'house'},
     {title: 'Products', route: '/products', icon: 'search'},
     {title: 'Add Product', route: '/newProduct', icon: 'plus-circle'},
-
   ]
+
+  currentAction: any;
+
+  setCurrentAction(action: any) {
+    this.currentAction = action;
+  }
 }
