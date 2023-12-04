@@ -1,18 +1,9 @@
 <nav class="p-3">
   <ul class="nav nav-pills">
-    <li>
-      <button routerLink="/home" class="btn btn-outline-info ms-1">
-        <i class="bi bi-house text-success"></i>
-        Home
-      </button>
-    </li>
-    <li>
-      <button routerLink="/products" class="btn btn-outline-info ms-1">Products</button>
-    </li>
-    <li>
-      <button routerLink="/newProduct" class="btn btn-outline-info ms-1">
-        <i class="bi bi-plus-circle text-success"></i>
-        New Product</button>
+    <li *ngFor="let action of actions">
+      <button routerLink="{{action.route}}"
+              class="btn btn-outline-success ms-1"
+      ><i class="bi bi-{{action.icon}}"></i> {{action.title}}</button>
     </li>
   </ul>
 </nav>

@@ -10,5 +10,10 @@ import {RouterLink, RouterOutlet} from '@angular/router';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'emsi-app';
+  actions: Array<any> = [
+    {title: 'Home', route: '/home', icon: 'house'},
+    {title: 'Products', route: '/products', icon: 'search'},
+    {title: 'Add Product', route: '/newProduct', icon: 'plus-circle'},
+
+  ]
 }
