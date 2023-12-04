@@ -2,6 +2,30 @@
   <div class="card">
     <div class="card-body">
       <h3>Products Component</h3>
+      <table class="table">
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Checked</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let product of products">
+          <td>{{product.id}}</td>
+          <td>{{product.name}}</td>
+          <td>{{product.price}}</td>
+          <td>
+            <button class="btn btn-outline-success"
+            (click)="handleCheckProduct(product)"
+            >
+              <i [class]="product.checked ? 'bi bi-check-circle-fill' : 'bi bi-circle'"></i>
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
