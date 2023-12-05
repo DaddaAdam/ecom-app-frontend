@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NgForOf} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
+import {ProductService} from "../services/product.service";
 
 @Component({
   selector: 'app-products',
@@ -17,23 +18,24 @@ export class ProductsComponent implements OnInit
 {
   products: Array<any> = [];
 
-  constructor(private http:HttpClient) {
+  constructor(private http:HttpClient, private productService: ProductService) {
 
   }
 
   ngOnInit(): void {
-    this.http.get('http://localhost:8089/products').subscribe((data: any) => {
+    this.getProducts();
+  }
+
+  getProducts() {
+    this.productService.getProducts().subscribe((data: any) => {
       this.products = data;
     });
   }
 
-
   handleCheckProduct(product: any) {
-    this.http.patch(`http://localhost:8089/products/${product.id}`, {checked: !product.checked})
-      .subscribe((data: any) => {
+    this.productService.checkProduct(product).subscribe((data: any) => {
       product.checked = data.checked;
-    }
-    );
+    });
   }
 
 }
