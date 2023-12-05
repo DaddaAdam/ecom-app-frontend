@@ -20,20 +20,7 @@
       "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluIiwidXNlcm5hbWUiOiJhZG1pbiIsInBhc3N3b3JkIjoiYWRtaW4iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iXX0.cxx0hmuNvtQ8yhQBIfpkFWgay4zJHQqy4ZK7HaWBirY"
     }
   ],
-
   "products": [
-    {
-      "id": 2,
-      "name": "Printer",
-      "price": 4000,
-      "checked": false
-    },
-    {
-      "id": 3,
-      "name": "Smartphone",
-      "price": 9000,
-      "checked": true
-    },
     {
       "id": 4,
       "name": "PlayStation 5",
