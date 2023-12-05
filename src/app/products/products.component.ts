@@ -34,12 +34,11 @@ export class ProductsComponent implements OnInit
   }
 
   getProducts() {
-    this.productService.getProducts(this.currentPage, this.pageSize)
+    this.productService.getProducts(this.keyword ,this.currentPage, this.pageSize)
       .subscribe((resp: any) => {
       this.products = resp.body;
       let totalProducts: number = resp.headers.get('X-Total-Count');
       this.totalPage = Math.ceil(totalProducts / this.pageSize);
-
     });
   }
 
@@ -54,14 +53,6 @@ export class ProductsComponent implements OnInit
     this.productService.deleteProduct(product)
       .subscribe((data: any) => {
       this.getProducts();
-    });
-  }
-
-
-  searchProduct() {
-    this.productService.searchProduct(this.keyword)
-      .subscribe((data: any) => {
-      this.products = data;
     });
   }
 

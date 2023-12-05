@@ -10,9 +10,9 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-  getProducts(page: number=1, size: number=4){
+  getProducts(keyword: string="", page: number=1, size: number=4){
     return this.http.get(
-      `http://localhost:8089/products?_page=${page}&_limit=${size}`,
+      `http://localhost:8089/products?name_like=${keyword}&_page=${page}&_limit=${size}`,
       {observe: 'response'}
     );
   }
@@ -27,9 +27,5 @@ export class ProductService {
 
   saveProduct(product: Product) : Observable<Product> {
     return this.http.post<Product>(`http://localhost:8089/products`, product);
-  }
-
-  searchProduct(keyword: string) : Observable<Array<Product>> {
-    return this.http.get<Array<Product>>(`http://localhost:8089/products?name_like=${keyword}`);
   }
 }
