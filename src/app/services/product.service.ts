@@ -10,8 +10,11 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-  getProducts() : Observable<Array<Product>>{
-    return this.http.get<Array<Product>>('http://localhost:8089/products');
+  getProducts(page: number=1, size: number=4){
+    return this.http.get(
+      `http://localhost:8089/products?_page=${page}&_limit=${size}`,
+      {observe: 'response'}
+    );
   }
 
   checkProduct(product: Product) {

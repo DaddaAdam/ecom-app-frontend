@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {NgForOf} from "@angular/common";
+import {NgClass, NgForOf} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
 import {ProductService} from "../services/product.service";
@@ -11,7 +11,8 @@ import {Observable} from "rxjs";
   standalone: true,
   imports: [
     NgForOf,
-    FormsModule
+    FormsModule,
+    NgClass
   ],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css'
@@ -19,10 +20,13 @@ import {Observable} from "rxjs";
 export class ProductsComponent implements OnInit
 {
   products: Array<Product> = [];
+  totalPage: number = 0;
+  pageSize: number = 3;
+  currentPage: number = 1;
   public keyword: string = '';
 
-  constructor(private http:HttpClient, private productService: ProductService) {
-
+  constructor(private http:HttpClient,
+              private productService: ProductService) {
   }
 
   ngOnInit(): void {
@@ -30,27 +34,39 @@ export class ProductsComponent implements OnInit
   }
 
   getProducts() {
-    this.productService.getProducts().subscribe((data: any) => {
-      this.products = data;
+    this.productService.getProducts(this.currentPage, this.pageSize)
+      .subscribe((resp: any) => {
+      this.products = resp.body;
+      let totalProducts: number = resp.headers.get('X-Total-Count');
+      this.totalPage = Math.ceil(totalProducts / this.pageSize);
+
     });
   }
 
   handleCheckProduct(product: Product) {
-    this.productService.checkProduct(product).subscribe((data: any) => {
+    this.productService.checkProduct(product)
+      .subscribe((data: any) => {
       product.checked = data.checked;
     });
   }
 
   handleDeleteProduct(product: Product) {
-    this.productService.deleteProduct(product).subscribe((data: any) => {
+    this.productService.deleteProduct(product)
+      .subscribe((data: any) => {
       this.getProducts();
     });
   }
 
 
   searchProduct() {
-    this.productService.searchProduct(this.keyword).subscribe((data: any) => {
+    this.productService.searchProduct(this.keyword)
+      .subscribe((data: any) => {
       this.products = data;
     });
+  }
+
+  handleGoToPage(number: number) {
+    this.currentPage = number;
+    this.getProducts();
   }
 }
