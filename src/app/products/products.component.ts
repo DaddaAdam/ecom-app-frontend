@@ -4,6 +4,7 @@ import {FormsModule} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
 import {ProductService} from "../services/product.service";
 import {Product} from "../model/product.model";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-products',
@@ -18,6 +19,7 @@ import {Product} from "../model/product.model";
 export class ProductsComponent implements OnInit
 {
   products: Array<Product> = [];
+  public keyword: string = '';
 
   constructor(private http:HttpClient, private productService: ProductService) {
 
@@ -45,4 +47,10 @@ export class ProductsComponent implements OnInit
     });
   }
 
+
+  searchProduct() {
+    this.productService.searchProduct(this.keyword).subscribe((data: any) => {
+      this.products = data;
+    });
+  }
 }

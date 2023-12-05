@@ -1,7 +1,13 @@
 <div class="p-3">
   <div class="card">
     <div class="card-body">
-      <h3>Products Component</h3>
+      <div class="card-body">
+        <input type="text" [(ngModel)]="keyword"/>
+        <button
+          class="btn btn-outline-success ms-1"
+          (click)="searchProduct()"
+        ><i class="bi bi-search"></i></button>
+      </div>
       <table class="table">
         <thead>
         <tr>
