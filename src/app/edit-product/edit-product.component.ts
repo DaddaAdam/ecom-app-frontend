@@ -40,7 +40,7 @@ export class EditProductComponent implements OnInit{
   updateProduct() {
     let product: Product = this.productFormGroup.value;
     this.productService.updateProduct(product).subscribe((data: any) => {
-      this.router.navigate(['products'])
+      this.router.navigate(['/admin/products'])
     });
   }
 }

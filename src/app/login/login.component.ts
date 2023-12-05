@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule} from "@angular/forms";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -20,10 +21,13 @@ export class LoginComponent implements OnInit{
     });
   }
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,
+              private router: Router) {
   }
 
   handleSubmit() {
-    console.log(this.formLogin.value);
+    if(this.formLogin.value.username === 'admin' && this.formLogin.value.password === 'admin') {
+      this.router.navigate(['/admin/products'])
+    }
   }
 }

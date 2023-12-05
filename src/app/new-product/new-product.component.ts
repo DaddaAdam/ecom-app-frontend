@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {ProductService} from "../services/product.service";
 import {Product} from "../model/product.model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-new-product',
@@ -13,7 +14,9 @@ import {Product} from "../model/product.model";
 export class NewProductComponent implements OnInit{
   public productForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private productService: ProductService) {
+  constructor(private formBuilder: FormBuilder,
+              private productService: ProductService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -27,7 +30,7 @@ export class NewProductComponent implements OnInit{
   saveProduct() {
     let product : Product = this.productForm.value;
     this.productService.saveProduct(product).subscribe((data: any) => {
-      alert(`Product ${data.name} saved!`)
+      this.router.navigate(['/admin/products']);
     });
   }
 }

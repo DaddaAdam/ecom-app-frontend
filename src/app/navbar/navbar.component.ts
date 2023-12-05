@@ -15,8 +15,8 @@ import {RouterLink} from "@angular/router";
 export class NavbarComponent {
   actions: Array<any> = [
     {title: 'Home', route: '/home', icon: 'house'},
-    {title: 'Products', route: '/products', icon: 'search'},
-    {title: 'Add Product', route: '/newProduct', icon: 'plus-circle'},
+    {title: 'Products', route: '/admin/products', icon: 'search'},
+    {title: 'Add Product', route: '/admin/newProduct', icon: 'plus-circle'},
   ]
 
   currentAction: any;
