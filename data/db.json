@@ -22,7 +22,7 @@
       "id": 4,
       "name": "PlayStation 5",
       "price": 7000,
-      "checked": true
+      "checked": false
     }
   ]
 }
