@@ -5,6 +5,7 @@ import {HttpClient} from "@angular/common/http";
 import {ProductService} from "../services/product.service";
 import {Product} from "../model/product.model";
 import {Observable} from "rxjs";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-products',
@@ -26,7 +27,9 @@ export class ProductsComponent implements OnInit
   public keyword: string = '';
 
   constructor(private http:HttpClient,
-              private productService: ProductService) {
+              private productService: ProductService,
+              private router: Router
+  ) {
   }
 
   ngOnInit(): void {
@@ -59,5 +62,9 @@ export class ProductsComponent implements OnInit
   handleGoToPage(number: number) {
     this.currentPage = number;
     this.getProducts();
+  }
+
+  handleEditProduct(product: Product) {
+    this.router.navigate([`/editProduct/${product.id}`])
   }
 }
