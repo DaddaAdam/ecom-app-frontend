@@ -1,4 +1,26 @@
 {
+  "users": [
+    {
+      "id": "user",
+      "username": "user",
+      "password": "user",
+      "roles": [
+        "USER"
+      ],
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzZXIiLCJ1c2VybmFtZSI6InVzZXIiLCJwYXNzd29yZCI6InVzZXIiLCJyb2xlcyI6WyJVU0VSIl19.D4xld3fpsHfryny6XXbnPj02Lf03wihnTGJQDMthk5M"
+    },
+    {
+      "id": "admin",
+      "username": "admin",
+      "password": "admin",
+      "roles": [
+        "USER",
+        "ADMIN"
+      ],
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluIiwidXNlcm5hbWUiOiJhZG1pbiIsInBhc3N3b3JkIjoiYWRtaW4iLCJyb2xlcyI6WyJVU0VSIiwiQURNSU4iXX0.cxx0hmuNvtQ8yhQBIfpkFWgay4zJHQqy4ZK7HaWBirY"
+    }
+  ],
+
   "products": [
     {
       "id": 2,
