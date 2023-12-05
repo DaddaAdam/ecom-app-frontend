@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
+import {Product} from "../model/product.model";
 
 @Injectable({
   providedIn: 'root'
@@ -8,11 +10,11 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-  getProducts(){
-    return this.http.get('http://localhost:8089/products');
+  getProducts() : Observable<Array<Product>>{
+    return this.http.get<Array<Product>>('http://localhost:8089/products');
   }
 
-  checkProduct(product: any) {
-    return this.http.patch(`http://localhost:8089/products/${product.id}`, {checked: !product.checked});
+  checkProduct(product: Product) {
+    return this.http.patch<Product>(`http://localhost:8089/products/${product.id}`, {checked: !product.checked});
   }
 }

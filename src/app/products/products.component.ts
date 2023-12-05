@@ -3,6 +3,7 @@ import {NgForOf} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
 import {ProductService} from "../services/product.service";
+import {Product} from "../model/product.model";
 
 @Component({
   selector: 'app-products',
@@ -16,7 +17,7 @@ import {ProductService} from "../services/product.service";
 })
 export class ProductsComponent implements OnInit
 {
-  products: Array<any> = [];
+  products: Array<Product> = [];
 
   constructor(private http:HttpClient, private productService: ProductService) {
 
@@ -32,7 +33,7 @@ export class ProductsComponent implements OnInit
     });
   }
 
-  handleCheckProduct(product: any) {
+  handleCheckProduct(product: Product) {
     this.productService.checkProduct(product).subscribe((data: any) => {
       product.checked = data.checked;
     });
