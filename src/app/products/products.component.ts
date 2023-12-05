@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {NgClass, NgForOf} from "@angular/common";
+import {NgClass, NgForOf, NgIf} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
 import {ProductService} from "../services/product.service";
 import {Product} from "../model/product.model";
 import {Observable} from "rxjs";
 import {Router} from "@angular/router";
+import {AppStateService} from "../app-state.service";
 
 @Component({
   selector: 'app-products',
@@ -13,7 +14,8 @@ import {Router} from "@angular/router";
   imports: [
     NgForOf,
     FormsModule,
-    NgClass
+    NgClass,
+    NgIf
   ],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css'
@@ -28,7 +30,8 @@ export class ProductsComponent implements OnInit
 
   constructor(private http:HttpClient,
               private productService: ProductService,
-              private router: Router
+              private router: Router,
+              public appState: AppStateService
   ) {
   }
 
