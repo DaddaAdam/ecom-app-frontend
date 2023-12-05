@@ -1,14 +1,16 @@
 import { Component } from '@angular/core';
-import {NgForOf} from "@angular/common";
-import {RouterLink} from "@angular/router";
+import {NgForOf, NgIf} from "@angular/common";
+import {Router, RouterLink} from "@angular/router";
+import {AppStateService} from "../app-state.service";
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-    imports: [
-        NgForOf,
-        RouterLink
-    ],
+  imports: [
+    NgForOf,
+    RouterLink,
+    NgIf
+  ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
@@ -21,7 +23,19 @@ export class NavbarComponent {
 
   currentAction: any;
 
+  constructor(
+    public appState: AppStateService,
+    private router: Router){}
+
   setCurrentAction(action: any) {
     this.currentAction = action;
+  }
+
+  login(){
+    this.router.navigate(['/login'])
+  }
+  logout() {
+    this.appState.setAuthState({})
+    this.router.navigate(['/login'])
   }
 }
