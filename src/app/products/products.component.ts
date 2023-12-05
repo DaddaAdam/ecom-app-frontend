@@ -39,4 +39,10 @@ export class ProductsComponent implements OnInit
     });
   }
 
+  handleDeleteProduct(product: Product) {
+    this.productService.deleteProduct(product).subscribe((data: any) => {
+      this.getProducts();
+    });
+  }
+
 }

@@ -17,4 +17,8 @@ export class ProductService {
   checkProduct(product: Product) {
     return this.http.patch<Product>(`http://localhost:8089/products/${product.id}`, {checked: !product.checked});
   }
+
+  deleteProduct(product: Product) {
+    return this.http.delete<Product>(`http://localhost:8089/products/${product.id}`);
+  }
 }
